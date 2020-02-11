@@ -8,17 +8,16 @@ import {
   Button,
 } from 'react-native';
 import Speaker from '../components/Speaker';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import {Img} from '../Style';
 import {FavesContext} from '../context';
+import Icon from 'react-native-vector-icons/Ionicons';
 
+Icon.loadFont();
 const Session = ({navigation}) => {
   const {removeFaveToState, addFaveToState, isFave} = useContext(FavesContext);
 
   const [data] = useState(navigation.getParam('item'));
   const [modalVisible, setModalVisible] = useState(false);
-  // const isFave = navigation.getParam('isFave');
 
   const handleModal = () => {
     setModalVisible(!modalVisible);
@@ -29,6 +28,9 @@ const Session = ({navigation}) => {
   return (
     <View>
       <Text>{data.location}</Text>
+      {isFave(data.id) ? (
+        <Icon name="ios-heart" size={20} color="#dd3333" />
+      ) : null}
       <Text>{data.title}</Text>
       <Text>{data.startTime}</Text>
       <Text>{data.description}</Text>

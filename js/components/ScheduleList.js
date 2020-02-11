@@ -6,9 +6,11 @@ import {
   SectionList,
   TouchableOpacity,
 } from 'react-native';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
+// import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+// import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {FavesContext} from '../context';
+Icon.loadFont();
 
 const ScheduleList = ({data, navigation}) => {
   const [sessions, setSessions] = useState([]);
@@ -51,7 +53,9 @@ const ScheduleList = ({data, navigation}) => {
             }>
             <Text style={styles.item}>{item.title}</Text>
             <Text>{item.location}</Text>
-            {isFave(item.id) ? <FontAwesomeIcon icon={faHeart} /> : null}
+            {isFave(item.id) ? (
+              <Icon name="ios-heart" size={20} color="#dd3333" />
+            ) : null}
           </TouchableOpacity>
         )}
         renderSectionHeader={({section}) => (

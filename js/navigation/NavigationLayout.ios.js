@@ -6,10 +6,11 @@ import MapScreen from '../screens/Map';
 import ScheduleScreen from '../screens/Schedule';
 import FavoritesScreen from '../screens/Favorites';
 import Session from '../screens/Session';
-import Speaker from '../components/Speaker';
 import {sharedNavigationOptions} from './config';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {Platform} from 'react-native';
+
+Icon.loadFont();
 
 import {
   StyleSheet,
@@ -75,7 +76,6 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
   }
 
   // You can return any component that you like here!
-  return <FontAwesomeIcon icon={iconName} />;
 };
 
 export default createBottomTabNavigator(
@@ -87,9 +87,9 @@ export default createBottomTabNavigator(
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
-      tabBarIcon: ({focused, tintColor}) => {
+      tabBarIcon: ({color, size}) => {
         // getTabBarIcon(navigation, focused, tintColor);
-        <FontAwesomeIcon icon={faHeart} />;
+        <Icon name="ios-heart" size={20} color="#dd3333" />;
       },
     }),
     tabBarOptions: {

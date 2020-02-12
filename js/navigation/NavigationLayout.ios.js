@@ -81,20 +81,46 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 export default createBottomTabNavigator(
   {
     Schedule: {screen: ScheduleStack},
-    Faves: {screen: FavesStack},
+    Faves: {
+      screen: FavesStack,
+    },
     Map: {screen: MapStack},
     About: {screen: AboutStack},
   },
   {
-    defaultNavigationOptions: ({navigation}) => ({
-      tabBarIcon: ({color, size}) => {
-        // getTabBarIcon(navigation, focused, tintColor);
-        <Icon name="ios-heart" size={20} color="#dd3333" />;
+    defaultNavigationOptions: ({navigation, navigationOptions}) => ({
+      tabBarIcon: ({tintColor}) => {
+        let iconName;
+        const route = navigation.state.routeName;
+        // console.log(route);
+        switch (route) {
+          case 'About':
+            iconName = 'md-information-circle';
+            break;
+          case 'Faves':
+            iconName = 'ios-heart';
+            break;
+          case 'Map':
+            iconName = 'ios-map';
+            break;
+          case 'Schedule':
+            iconName = 'ios-calendar';
+            break;
+        }
+        return <Icon name={iconName} size={30} color={tintColor} />;
       },
     }),
     tabBarOptions: {
       activeTintColor: '#fff',
       inactiveTintColor: '#999',
+      labelStyle: {
+        fontSize: 14,
+      },
+      style: {
+        backgroundColor: '#000',
+        height: 70,
+        paddingTop: 20,
+      },
     },
   },
 );

@@ -22,6 +22,11 @@ export const sharedNavigationOptions = navigation => ({
   header: props => <GradientHeader {...props} />,
   headerStyle: {
     backgroundColor: 'transparent',
+    paddingBottom: 40,
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontSize: 22,
   },
 });
 

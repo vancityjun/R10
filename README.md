@@ -13,11 +13,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 #### IOS 
 
-Xcode
+* Xcode
 
 #### Android
 
-Android Studio
+* Android Studio
 
 ### Installing
 
@@ -42,5 +42,5 @@ images here
 
 ## Built With
 
-* [React Native](https://facebook.github.io/react-native/)
+* [React Native](https://facebook.github.io/react-native/) - Mobile application framework
 

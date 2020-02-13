@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Modal, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Modal,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {addFave} from '../config/model';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import styled from 'styled-components';
 
@@ -20,6 +28,9 @@ const Wrap = styled.View`
   justify-content: center;
   flex-direction: row;
 `;
+
+Icon.loadFont();
+
 const Speaker = ({onChange, modalVisible, speaker}) => {
   // console.log(speaker);
   const handleModal = () => {
@@ -36,9 +47,14 @@ const Speaker = ({onChange, modalVisible, speaker}) => {
       <View style={styles.container}>
         <Navigation>
           <Wrap>
-            <Text style={styles.navigation} onPress={() => handleModal()}>
-              close
-            </Text>
+            <TouchableOpacity>
+              <Icon
+                onPress={() => handleModal()}
+                name="md-close"
+                size={20}
+                color="#fff"
+              />
+            </TouchableOpacity>
             <Text style={styles.navigation}>About the Speaker</Text>
           </Wrap>
         </Navigation>

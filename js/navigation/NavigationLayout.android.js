@@ -75,7 +75,7 @@ export default createDrawerNavigator(
   },
   {
     defaultNavigationOptions: ({navigation, navigationOptions}) => ({
-      tabBarIcon: ({tintColor}) => {
+      drawerIcon: ({tintColor}) => {
         let iconName;
         const route = navigation.state.routeName;
         // console.log(route);
@@ -96,16 +96,11 @@ export default createDrawerNavigator(
         return <Icon name={iconName} size={30} color={tintColor} />;
       },
     }),
-    tabBarOptions: {
-      activeTintColor: '#fff',
+    contentOptions: {
+      activeTintColor: '#9963ea',
       inactiveTintColor: '#999',
       labelStyle: {
-        fontSize: 14,
-      },
-      style: {
-        backgroundColor: '#000',
-        height: 70,
-        paddingTop: 20,
+        itemStyle: 20,
       },
     },
   },

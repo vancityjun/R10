@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 import {Header} from 'react-navigation-stack';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -15,7 +15,9 @@ const GradientHeader = props => {
         style={[StyleSheet.absoluteFill, {height: 100, width: '100%'}]}
       />
       <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
-        <Icon name="md-menu" size={30} color="#fff" />
+        {Platform.OS === 'android' ? (
+          <Icon name="md-menu" size={30} color="#fff" />
+        ) : null}
       </TouchableOpacity>
       <Header {...props} />
     </View>

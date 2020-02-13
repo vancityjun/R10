@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 import AboutScreen from '../screens/About';
 import MapScreen from '../screens/Map';
 import ScheduleScreen from '../screens/Schedule';
@@ -8,7 +8,7 @@ import FavoritesScreen from '../screens/Favorites';
 import Session from '../screens/Session';
 import {sharedNavigationOptions} from './config';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import Drawer from '../components/Drawer';
 
 Icon.loadFont();
 
@@ -66,35 +66,47 @@ const ScheduleStack = createStackNavigator(
 
 // Dedicated stacks for Schedule and Faves will go here too!
 
-const getTabBarIcon = (navigation, focused, tintColor) => {
-  const {routeName} = navigation.state;
-  let iconName;
-  if (routeName === 'Schedule') {
-    iconName = faHeart;
-  } else if (routeName === 'Faves') {
-    iconName = faHeart;
-  }
-
-  // You can return any component that you like here!
-};
-
-export default createBottomTabNavigator(
+export default createDrawerNavigator(
   {
-    Schedule: {screen: ScheduleStack},
-    Faves: {screen: FavesStack},
-    Map: {screen: MapStack},
-    About: {screen: AboutStack},
+    Schedule: ScheduleStack,
+    Faves: FavesStack,
+    Map: MapStack,
+    About: AboutStack,
   },
   {
-    defaultNavigationOptions: ({navigation}) => ({
-      tabBarIcon: ({color, size}) => {
-        // getTabBarIcon(navigation, focused, tintColor);
-        <Icon name="ios-heart" size={20} color="#dd3333" />;
+    defaultNavigationOptions: ({navigation, navigationOptions}) => ({
+      tabBarIcon: ({tintColor}) => {
+        let iconName;
+        const route = navigation.state.routeName;
+        // console.log(route);
+        switch (route) {
+          case 'About':
+            iconName = 'md-information-circle';
+            break;
+          case 'Faves':
+            iconName = 'md-heart';
+            break;
+          case 'Map':
+            iconName = 'md-map';
+            break;
+          case 'Schedule':
+            iconName = 'md-calendar';
+            break;
+        }
+        return <Icon name={iconName} size={30} color={tintColor} />;
       },
     }),
     tabBarOptions: {
       activeTintColor: '#fff',
       inactiveTintColor: '#999',
+      labelStyle: {
+        fontSize: 14,
+      },
+      style: {
+        backgroundColor: '#000',
+        height: 70,
+        paddingTop: 20,
+      },
     },
   },
 );

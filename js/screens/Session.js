@@ -10,9 +10,24 @@ import {
 import Speaker from '../components/Speaker';
 import {Img} from '../Style';
 import {FavesContext} from '../context';
+import GradientButton from '../components/GradientButton';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Wrapper, SpaceBetween, ProfileImg, TextGrey, Red} from '../Style';
+import {
+  Wrapper,
+  SpaceBetween,
+  ProfileImg,
+  TextGrey,
+  Red,
+  Title,
+} from '../Style';
 import styled from 'styled-components';
+
+const TouchableOpacityFlex = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px 0;
+`;
 
 Icon.loadFont();
 const Session = ({navigation}) => {
@@ -24,32 +39,29 @@ const Session = ({navigation}) => {
   const handleModal = () => {
     setModalVisible(!modalVisible);
   };
-  useEffect(() => {
-    console.log(data.id);
-  }, [data]);
   return (
     <Wrapper>
-      <SpaceBetween>
+      <SpaceBetween style={{marginTop: 20}}>
         <TextGrey style={{fontSize: 20}}>{data.location}</TextGrey>
         {isFave(data.id) ? (
           <Icon name="ios-heart" size={20} color={Red} />
         ) : null}
       </SpaceBetween>
-      <Text style={{fontSize: 34}}>{data.title}</Text>
+      <Title>{data.title}</Title>
       <Text style={{fontSize: 20, color: Red}}>{data.startTime}</Text>
-      <Text style={{fontSize: 24}}>{data.description}</Text>
+      <Text style={styles.description}>{data.description}</Text>
       {data.speaker ? (
         <>
-          <TextGrey>Presented by:</TextGrey>
-          <TouchableOpacity onPress={() => handleModal()}>
+          <TextGrey style={{marginTop: 20}}>Presented by:</TextGrey>
+          <TouchableOpacityFlex onPress={() => handleModal()}>
             <ProfileImg>
               <Image
                 style={{width: 80, height: 80}}
                 source={{uri: data.speaker.image}}
               />
             </ProfileImg>
-            <Text>{data.speaker.name}</Text>
-          </TouchableOpacity>
+            <Text style={styles.speakerName}>{data.speaker.name}</Text>
+          </TouchableOpacityFlex>
           <Speaker
             modalVisible={modalVisible}
             onChange={handleModal}
@@ -58,12 +70,12 @@ const Session = ({navigation}) => {
         </>
       ) : null}
       {isFave(data.id) ? (
-        <Button
+        <GradientButton
           title={'Remove From Faves'}
           onPress={() => removeFaveToState(data.id)}
         />
       ) : (
-        <Button
+        <GradientButton
           title={'Add To Faves'}
           onPress={() => addFaveToState(data.id)}
         />
@@ -73,10 +85,15 @@ const Session = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  speakerName: {
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 20,
+    marginLeft: 20,
+  },
+  description: {
+    fontSize: 24,
+    fontFamily: 'Montserrat-Regular',
+    marginTop: 20,
   },
 });
 

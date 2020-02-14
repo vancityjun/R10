@@ -48,7 +48,11 @@ const AboutScreen = () => {
               renderItem={({item}) => [
                 <Drawer
                   key={item.id}
-                  title={<Text>+ {item.title}</Text>}
+                  title={
+                    <Text>
+                      <Text>+</Text> <Text>{item.title}</Text>
+                    </Text>
+                  }
                   description={item.description}
                 />,
               ]}

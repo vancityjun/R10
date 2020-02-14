@@ -11,22 +11,23 @@ export const Red = '#cf392a';
 export const Title = styled.Text`
   font-size: 34px;
   margin: 20px 0;
+  font-family: 'Montserrat-Regular';
 `;
-// font-family: 'Montserrat-Regular';
 export const Desc = styled.Text`
   font-size: 22px;
   line-height: 30px;
+  font-family: 'Montserrat-Light';
 `;
-// font-family: 'Montserrat-Light';
 export const List = styled.Text`
   color: ${Purple};
   font-size: 24px;
   margin-bottom: 20px;
+  font-family: 'Montserrat-Regular';
 `;
-// font-family: 'Montserrat-Regular';
 export const Wrapper = styled.View`
   padding: 0 20px;
   background: #fff;
+  height: 100%;
 `;
 
 export const Img = styled.Image`
@@ -41,11 +42,14 @@ export const SpaceBetween = styled.View`
 `;
 
 export const ProfileImg = styled.View`
-  border-radius: 1000;
+  width: 80;
+  height: 80;
+  border-radius: 100;
   overflow: hidden;
 `;
 
 export const TextGrey = styled.Text`
   color: ${MediumGrey};
   font-size: 18;
+  font-family: 'Montserrat-Regular';
 `;

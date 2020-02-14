@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     height: 44,
+    fontFamily: 'Montserrat-Regular',
   },
 });
 

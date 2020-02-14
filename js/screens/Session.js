@@ -11,6 +11,8 @@ import Speaker from '../components/Speaker';
 import {Img} from '../Style';
 import {FavesContext} from '../context';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Wrapper, SpaceBetween, ProfileImg, TextGrey, Red} from '../Style';
+import styled from 'styled-components';
 
 Icon.loadFont();
 const Session = ({navigation}) => {
@@ -26,21 +28,26 @@ const Session = ({navigation}) => {
     console.log(data.id);
   }, [data]);
   return (
-    <View>
-      <Text>{data.location}</Text>
-      {isFave(data.id) ? (
-        <Icon name="ios-heart" size={20} color="#dd3333" />
-      ) : null}
-      <Text>{data.title}</Text>
-      <Text>{data.startTime}</Text>
-      <Text>{data.description}</Text>
+    <Wrapper>
+      <SpaceBetween>
+        <TextGrey style={{fontSize: 20}}>{data.location}</TextGrey>
+        {isFave(data.id) ? (
+          <Icon name="ios-heart" size={20} color={Red} />
+        ) : null}
+      </SpaceBetween>
+      <Text style={{fontSize: 34}}>{data.title}</Text>
+      <Text style={{fontSize: 20, color: Red}}>{data.startTime}</Text>
+      <Text style={{fontSize: 24}}>{data.description}</Text>
       {data.speaker ? (
         <>
+          <TextGrey>Presented by:</TextGrey>
           <TouchableOpacity onPress={() => handleModal()}>
-            <Image
-              style={{width: 80, height: 80}}
-              source={{uri: data.speaker.image}}
-            />
+            <ProfileImg>
+              <Image
+                style={{width: 80, height: 80}}
+                source={{uri: data.speaker.image}}
+              />
+            </ProfileImg>
             <Text>{data.speaker.name}</Text>
           </TouchableOpacity>
           <Speaker
@@ -61,7 +68,7 @@ const Session = ({navigation}) => {
           onPress={() => addFaveToState(data.id)}
         />
       )}
-    </View>
+    </Wrapper>
   );
 };
 

@@ -10,6 +10,8 @@ import {
 // import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {FavesContext} from '../context';
+import {Wrapper, SpaceBetween, TextGrey} from '../Style';
+
 Icon.loadFont();
 
 const ScheduleList = ({data, navigation}) => {
@@ -39,8 +41,9 @@ const ScheduleList = ({data, navigation}) => {
   }, [data]);
 
   return (
-    <View style={styles.container}>
+    <View>
       <SectionList
+        style={{backgroundColor: '#fff'}}
         sections={sessions}
         renderItem={({item}) => (
           <TouchableOpacity
@@ -52,10 +55,17 @@ const ScheduleList = ({data, navigation}) => {
               })
             }>
             <Text style={styles.item}>{item.title}</Text>
-            <Text>{item.location}</Text>
-            {isFave(item.id) ? (
-              <Icon name="ios-heart" size={20} color="#dd3333" />
-            ) : null}
+            <SpaceBetween style={{padding: 10}}>
+              <TextGrey>{item.location}</TextGrey>
+              {isFave(item.id) ? (
+                <Icon
+                  name="ios-heart"
+                  size={20}
+                  color="#dd3333"
+                  style={{alignSelf: 'flex-end'}}
+                />
+              ) : null}
+            </SpaceBetween>
           </TouchableOpacity>
         )}
         renderSectionHeader={({section}) => (
@@ -79,7 +89,7 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 10,
-    fontSize: 18,
+    fontSize: 20,
     height: 44,
   },
 });

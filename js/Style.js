@@ -32,3 +32,20 @@ export const Wrapper = styled.View`
 export const Img = styled.Image`
   border-radius: '100%';
 `;
+
+export const SpaceBetween = styled.View`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const ProfileImg = styled.View`
+  border-radius: 1000;
+  overflow: hidden;
+`;
+
+export const TextGrey = styled.Text`
+  color: ${MediumGrey};
+  font-size: 18;
+`;
